@@ -10,14 +10,26 @@ var timer = 0;
 
 var greyARR;
 
+var displayOnly = true;
+
 function pageLoad_init()
 {
 	trace("pageLoad_init();");
 
 	dust_init();
 
-	mouse_init();
 	canvas_init();
+
+	if(displayOnly)
+	{
+		demo();
+	}
+
+	else
+	{
+		mouse_init();	
+	}
+
 	brush_init();
 
 	// INIT
@@ -43,6 +55,10 @@ function mouse_init()
 	mouse = {};
 	mouse.x = undefined;
 	mouse.y = undefined;
+
+	canvas.addEventListener("mousemove", canvas_event, false);
+	canvas.addEventListener("mousedown", canvas_event, false);
+	canvas.addEventListener("mouseup", canvas_event, false);
 }
 
 function canvas_init()
@@ -53,10 +69,6 @@ function canvas_init()
 
 	canvas.width = screen.width;
 	canvas.height = screen.height;
-
-	canvas.addEventListener("mousemove", canvas_event, false);
-	canvas.addEventListener("mousedown", canvas_event, false);
-	canvas.addEventListener("mouseup", canvas_event, false);
 }
 
 function canvas_event(event)
@@ -121,6 +133,21 @@ function canvas_event(event)
 	}
 }
 
+function demo()
+{
+
+	for(let i = 0; i < 6000; i++)
+	{
+		let fakeEvent = {};
+
+		fakeEvent.x = randomRange((canvas.width - 2), 2);
+		fakeEvent.y = randomRange((canvas.height -2), 2);
+
+		draw_engine(fakeEvent);
+
+	}
+}
+
 function draw_engine(event)
 {
 			let timePassed = (new Date() - timer) / 10;
@@ -162,6 +189,7 @@ function Circle(x, y, vx, vy, radius, useGrey)
 	this.y = y;
 	this.vx = vx;
 	this.vy = vy;
+	this.harshEase = randomRange(20, 8);
 	this.radius = radius;
 	
 	if(useGrey)
@@ -195,8 +223,8 @@ function Circle(x, y, vx, vy, radius, useGrey)
 			this.vy = -this.vy;
 		}
 
-		this.x += this.vx / 10;
-		this.y += this.vy / 10;
+		this.x += this.vx / this.harshEase;
+		this.y += this.vy / this.harshEase;
 
 		this.draw();
 	};

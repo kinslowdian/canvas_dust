@@ -34,6 +34,34 @@ html, body
 	overflow: hidden;
 }
 
+#disp-canvas
+{
+	position: relative;
+}
+
+.flick
+{
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+
+	left: 0; right: 0; top: 0; bottom: 0;
+
+	background: #000;
+
+	animation: flickFrames 400ms linear infinite;
+}
+
+@keyframes flickFrames
+{
+	0%		{opacity: 0.08;}
+	25%		{opacity: 0.2;}
+	50%		{opacity: 0.06;}
+	75%		{opacity: 0.18;}
+	100%	{opacity: 0.08;}
+}
+
 
 
 /* !!! RESPONSIVE !!! */
