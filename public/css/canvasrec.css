@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+*
+{
+	margin: 0;
+	padding: 0;
+
+	border: none;
+	outline: none;
+}
+
 html, body
 {
 	width: 100%;
@@ -21,9 +30,6 @@ html, body
 	height: 100%;
 
 	position: relative;
-
-/*	background: #000;
-	background: #0D0221;*/
 
 	background-image: url(../img/bg.jpg);
 	background-image: url(../img/bg_noise.jpg);
@@ -48,7 +54,7 @@ html, body
 
 	left: 0; right: 0; top: 0; bottom: 0;
 
-	background: #000;
+	background: rgb(8, 8, 8);
 
 	animation: flickFrames 400ms linear infinite;
 }
@@ -60,32 +66,4 @@ html, body
 	50%		{opacity: 0.06;}
 	75%		{opacity: 0.18;}
 	100%	{opacity: 0.08;}
-}
-
-
-
-/* !!! RESPONSIVE !!! */
-
-/* MOBILE */
-@media only screen and (min-width: 300px)
-{
-
-}
-
-/* PHABLET */
-@media only screen and (min-width: 600px)
-{
-	
-}
-
-/* TABLET */
-@media only screen and (min-width: 900px)
-{
-
-}
-
-/* DESKTOP */
-@media only screen and (min-width: 1200px)
-{
-
 }
