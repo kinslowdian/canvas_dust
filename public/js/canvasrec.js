@@ -2,9 +2,6 @@ var canvas;
 var brush;
 
 var circleArray;
-var timer = 0;
-
-var greyARR;
 
 function pageLoad_init()
 {
@@ -12,9 +9,9 @@ function pageLoad_init()
 
 	canvas_init();
 
-	demo();
-
 	brush_init();
+
+	demo();
 
 	// INIT
 	animate();
@@ -26,6 +23,11 @@ function canvas_init()
 
 	canvas.width = screen.width;
 	canvas.height = screen.height;
+}
+
+function brush_init()
+{
+	brush = canvas.getContext('2d');
 }
 
 function demo()
@@ -53,12 +55,6 @@ function draw_engine(dustOBJ)
 	let vy = (Math.random() - 0.1) * 4;
 
 	circleArray.push(new Circle(x, y, vx, vy, radius, true));
-}
-
-
-function brush_init()
-{
-	brush = canvas.getContext('2d');
 }
 
 
