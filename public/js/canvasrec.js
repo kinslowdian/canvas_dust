@@ -165,8 +165,8 @@ function Circle(x, y, vx, vy, radius)
 			this.vy = -this.vy;
 		}
 
-		this.x += this.vx;
-		this.y += this.vy;
+		this.x += this.vx / 10;
+		this.y += this.vy / 10;
 
 		this.draw();
 	};

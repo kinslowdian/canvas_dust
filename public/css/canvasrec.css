@@ -22,8 +22,13 @@ html, body
 
 	position: relative;
 
-	background: #000;
-	background: #0D0221;
+/*	background: #000;
+	background: #0D0221;*/
+
+	background-image: url(../img/bg.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 
 	overflow: hidden;
 }
