@@ -8,11 +8,13 @@ var mouse;
 var circleArray;
 var timer = 0;
 
+var greyARR;
+
 function pageLoad_init()
 {
 	trace("pageLoad_init();");
 
-	circleArray = [];
+	dust_init();
 
 	mouse_init();
 	canvas_init();
@@ -20,6 +22,20 @@ function pageLoad_init()
 
 	// INIT
 	animate();
+}
+
+function dust_init()
+{
+	circleArray = [];
+
+	greyARR = [];
+
+	greyARR.push("#AAAAAA");
+	greyARR.push("#BBBBBB");
+	greyARR.push("#CCCCCC");
+	greyARR.push("#DDDDDD");
+	greyARR.push("#EEEEEE");
+	greyARR.push("#FFFFFF");
 }
 
 function mouse_init()
@@ -116,6 +132,8 @@ function draw_engine(event)
 
 			// let radius = timePassed;
 
+			// let radius = 0.5;
+
 			let radius = 0.5;
 
 			timer = 0;
@@ -125,25 +143,37 @@ function draw_engine(event)
 			let vx = (Math.random() - 0.1) * 4;
 			let vy = (Math.random() - 0.1) * 4;
 
-			circleArray.push(new Circle(x, y, vx, vy, radius));
+			circleArray.push(new Circle(x, y, vx, vy, radius, true));
 }
 
 
 function brush_init()
 {
 	brush = canvas.getContext('2d');
+	// brush.filter = 'blur(2px)';
+	// brush.globalAlpha = 0.2;
 }
 
 
 
-function Circle(x, y, vx, vy, radius)
+function Circle(x, y, vx, vy, radius, useGrey)
 {
 	this.x = x;
 	this.y = y;
 	this.vx = vx;
 	this.vy = vy;
 	this.radius = radius;
-	this.color = randColor();
+	
+	if(useGrey)
+	{
+		// this.color = randGrey();
+		this.color = randRGBA();
+	}
+
+	else
+	{
+		this.color = randColor();
+	}
 
 	this.draw = function()
 	{
@@ -184,6 +214,23 @@ function animate()
 	}
 }
 
+function randRGBA()
+{
+	let set_c = randomRange(255, 100);
+	let set_a = randomRange(100, 30) / 100;
+
+	let rgba = 'rgba(' + set_c + ', ' + set_c + ', ' + set_c + ', ' + set_a + ')';
+
+	return rgba;
+}
+
+function randGrey()
+{
+	let hexGrey = greyARR[Math.floor(Math.random() * greyARR.length)];
+
+	return hexGrey;
+}
+
 
 function randColor()
 {
@@ -196,5 +243,12 @@ function randColor()
 	}
 
 	return hexColor;
+}
+
+function randomRange(numH, numL)
+{
+	let n = Math.round(Math.random() * (numH - numL) + numL);
+
+	return n;
 }
 

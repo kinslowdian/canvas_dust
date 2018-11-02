@@ -26,6 +26,7 @@ html, body
 	background: #0D0221;*/
 
 	background-image: url(../img/bg.jpg);
+	background-image: url(../img/bg_noise.jpg);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
