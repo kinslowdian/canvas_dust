@@ -1,3 +1,6 @@
+//DEBUG
+var trace = function(msg){console.log(msg);};
+
 var canvas;
 var brush;
 
@@ -23,6 +26,8 @@ function canvas_init()
 
 	canvas.width = screen.width;
 	canvas.height = screen.height;
+
+	trace(screen.width + " x " + screen.height);
 }
 
 function brush_init()
